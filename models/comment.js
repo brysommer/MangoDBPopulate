@@ -8,5 +8,5 @@ const generalSchema = new Schema({
     }
 });
 
-const model = mongoose.model('comment', generalSchema);
+const model = mongoose.model('comments', generalSchema);
 module.exports = model;

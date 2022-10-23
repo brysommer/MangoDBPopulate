@@ -48,7 +48,7 @@ server.post('/stats', uploads.none(), async function (req, res) {
  });
 
  server.post('/comment', uploads.none(), async function (req, res) {
-    const bookID = req.body.select; 
+    const bookID = req.body.book; 
     const comment = req.body.comment;   
     const doc = await CommentModel.create({ content: comment});
     const bookUpdate = await BookModel.updateOne(
@@ -57,6 +57,8 @@ server.post('/stats', uploads.none(), async function (req, res) {
           $push: { comments: doc.id }  
         } 
     );
+    console.log(bookID);
+    console.log(doc.id);
     console.log(bookUpdate);
     console.log(doc);
     res.send('Запис створено');
@@ -67,19 +69,22 @@ server.post('/stats', uploads.none(), async function (req, res) {
     res.render('admin');
 });
 
-
-const init = async () => {
-    console.log('kk');
-    const docGenre = await GenreModel.create({ genre: req.body.genre });
-    const genreID = docGenre.id;
-    const doc = await BookModel.create({
-        name: req.body.bookname,
-        genre: genreID,
-        comments: [],
+server.get('/populate', async (req, res) => {
+    
+        const booksList = await BookModel.find({}, ).populate('comments')
+        console.log(booksList);
+        res.send(JSON.stringify(booksList));
     });
-    console.log(doc);
-    console.log(docGenre);
-};
+
+
+//const init = async () => {
+ //   const booksList = await BookModel.find({}, ).populate('comments')
+  //  console.log(booksList);
+ //   res.send(JSON.stringify(booksList));
+
+ //   console.log(doc);
+ //   console.log(docGenre);
+//};
 
 // init();
 

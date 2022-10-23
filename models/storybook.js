@@ -6,10 +6,9 @@ const generalSchema = new Schema({
         type: Schema.Types.String,
         minLenght: 2,
     },
-    comments: {
-        type: Schema.Types.Array,
-        ref: 'Comment',
-    },
+    comments: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'comments' }],
     genre: {
         type: Schema.Types.ObjectId,
         ref: 'Genre',
