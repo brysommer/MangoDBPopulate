@@ -19,6 +19,8 @@ server.get('/list', async (req, res) => {
     res.render('list');
 });
 
+
+
 server.get('/json', async (req, res) => {
     const booksList = await BookModel.find({}, ).populate('genre')
     console.log(booksList);
@@ -35,6 +37,21 @@ server.get('/comment', async (req, res) => {
     res.send(JSON.stringify(booksList));
 });
 
+server.get('/addgenre', async (req, res) => {
+    
+    res.render('genre');
+});
+
+server.post('/janr', uploads.none(), async function (req, res) {
+    const genreName = req.body.genreName;
+    const doc = await GenreModel.create({
+        genre: genreName,
+    });
+    console.log(doc);
+    console.log(req.body);
+    res.render('links');
+ });
+
 server.post('/stats', uploads.none(), async function (req, res) {
     const genreID = req.body.select;
     const doc = await BookModel.create({
@@ -44,7 +61,7 @@ server.post('/stats', uploads.none(), async function (req, res) {
     });
     console.log(doc);
     console.log(req.body);
-    res.send('Запис створено');
+    res.render('links');
  });
 
  server.post('/comment', uploads.none(), async function (req, res) {
@@ -61,12 +78,16 @@ server.post('/stats', uploads.none(), async function (req, res) {
     console.log(doc.id);
     console.log(bookUpdate);
     console.log(doc);
-    res.send('Запис створено');
+    res.render('links');
  });
 
  server.get('/admin', async (req, res) => {
     
     res.render('admin');
+});
+server.get('/comments', async (req, res) => {
+    
+    res.render('comments');
 });
 
 server.get('/populate', async (req, res) => {

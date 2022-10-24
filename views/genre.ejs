@@ -15,21 +15,19 @@
 <body>
     <header><h1>Додайте книгу до каталогу</h1></header>
     <main>
-        <form action="/stats" enctype="multipart/form-data" method="post">
+        
             <div class="form-group">
-                <label> Ввдедіть назву книги
-                    <input type="text" class="form-control" placeholder="Назва книги" name="bookname">
-                </label><br>
-              <label for="select">Оберіть жанр</label>
-              <select multiple name="select[]" class="select">
-              </select><br>    
-              <input type="submit" value="Відправити" class="btn btn-default">                     
+                <h2>Додати новий жанр</h2>
+              <form action="/janr" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                    <label> Введіть назву жанру
+                        <input type="text" class="form-control" placeholder="Жанр" name="genreName">
+                    </label><br>
+                  <input type="submit" value="Відправити" class="btn btn-default">
             </div>
-            
+          </form>
     </main>
-    <aside>
-     
-    </aside>
+    
     
 </body>
 <script src="./script/selector.js"></script>

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://localhost:27017/books';
+const uri = 'mongodb://127.0.0.1:27017/books';
 const options = {
- //   useNewUrlParser: true,
-  //  useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 };
 
 mongoose.connect(uri, options);

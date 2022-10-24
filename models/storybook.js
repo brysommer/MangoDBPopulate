@@ -9,10 +9,10 @@ const generalSchema = new Schema({
     comments: [{ 
         type: Schema.Types.ObjectId, 
         ref: 'comments' }],
-    genre: {
+    genre: [{
         type: Schema.Types.ObjectId,
         ref: 'Genre',
-    },
+    }],
 });
 
 const model = mongoose.model('Storybook', generalSchema);
