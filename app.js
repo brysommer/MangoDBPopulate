@@ -14,15 +14,12 @@ server.listen(3000);
 server.use(express.static('public'));
 
 
-server.get('/list', async (req, res) => {
-    
+server.get('/list', async (req, res) => {   
     res.render('list');
 });
 
-
-
 server.get('/json', async (req, res) => {
-    const booksList = await BookModel.find({},).populate('genre');
+    const booksList = await BookModel.find({},).populate('genre').populate('comments');
     console.log(booksList);
     res.send(JSON.stringify(booksList));
 });
@@ -37,8 +34,7 @@ server.get('/comment', async (req, res) => {
     res.send(JSON.stringify(booksList));
 });
 
-server.get('/addgenre', async (req, res) => {
-    
+server.get('/addgenre', async (req, res) => {   
     res.render('genre');
 });
 
