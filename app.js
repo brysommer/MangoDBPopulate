@@ -22,7 +22,7 @@ server.get('/list', async (req, res) => {
 
 
 server.get('/json', async (req, res) => {
-    const booksList = await BookModel.find({}, ).populate('genre')
+    const booksList = await BookModel.find({},).populate('genre');
     console.log(booksList);
     res.send(JSON.stringify(booksList));
 });
@@ -40,6 +40,11 @@ server.get('/comment', async (req, res) => {
 server.get('/addgenre', async (req, res) => {
     
     res.render('genre');
+});
+
+server.get('/links', async (req, res) => {
+    
+    res.render('links');
 });
 
 server.post('/janr', uploads.none(), async function (req, res) {
@@ -92,7 +97,7 @@ server.get('/comments', async (req, res) => {
 
 server.get('/populate', async (req, res) => {
     
-        const booksList = await BookModel.find({}, ).populate('comments')
+        const booksList = await BookModel.find({}, ).populate('comments').populate('genre');
         console.log(booksList);
         res.send(JSON.stringify(booksList));
     });

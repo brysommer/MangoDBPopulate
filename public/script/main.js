@@ -1,16 +1,21 @@
 async function productItems() {
-    const el1 = document.querySelector('.main');
-    let HTML = '';
-    let {data}  = await axios.get('/json');
-    console.log(data);
-    console.log(Array.isArray(data));
-    data.forEach(element => {
-       HTML += `
-       <li> ${element.name} </span><span> Genre: ${element.genre.genre}</span> </li>>
-
-
-      `;
+  const el1 = document.querySelector('.main');
+  let HTML = '';
+  let genreName ='';
+  let {data}  = await axios.get('/json');
+  console.log(data);
+  console.log(Array.isArray(data));
+  data.forEach(element => {
+    element.genre.forEach(element => {
+      console.log(element.genre);
+      
+      genreName += ' ' + element.genre;
     });
-    el1.innerHTML = HTML; 
-    };
+     HTML += `
+     <li> ${element.name} </span><br><span> Жанр: ${genreName}</span> </li>
+    `;
+    genreName =''
+  });
+  el1.innerHTML = HTML; 
+  };
 productItems();    
